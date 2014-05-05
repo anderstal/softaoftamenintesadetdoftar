@@ -1,0 +1,59 @@
+﻿@using SWEprotein.Models
+@model IEnumerable<SWEprotein.Models.tbOrder>
+@{
+    ViewBag.Title = "UserOrders";
+}
+
+@*@foreach (tbOrder or in Model)
+{
+    <div class="caption">
+        
+       Datum: <p>@or.dtOrderDate</p>
+       Status: <p>@or.tbStatus.sStatus</p>
+        Summa:  <p>@or.iSum</p>
+        @Html.ActionLink("Detaljer", "OrderDetail", "User", new { id = @or.iID}, null)
+    </div>
+}*@
+
+
+  <table class="table table-condensed table-bordered" style="margin-top:25px;">
+        <tr>
+            <th>
+              Orderdatum
+            </th>
+             <th>
+             Status
+            </th>
+
+            <th>
+            Summa
+            </th>
+            <th>
+            Mer info
+            </th>
+    
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>         
+                @Html.DisplayFor(modelItem => item.dtOrderDate)
+            </td>
+ <td>         
+                @Html.DisplayFor(modelItem => item.tbStatus.sStatus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.iSum)
+            </td>
+          
+         
+           
+            <td>
+                @Html.ActionLink("Visa produkter", "OrderDetail", new { id=item.iID }) 
+            
+            </td>
+        </tr>
+    }
+    
+    </table>

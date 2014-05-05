@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@using SWEprotein.Models
+
+
+
+
+
+    @foreach (tbCampaign prod in Model)
+    {
+        <div class="row" style="margin-bottom:20px;">
+       <div class="col-md-12">
+            <div class="thumbnail">
+               <a href="/Product/Campaign/@prod.iID"> <img src="@prod.sImgURL" class="img-responsive" alt="..."></a>
+             </div>
+            
+        </div>
+  </div>
+  
+    }

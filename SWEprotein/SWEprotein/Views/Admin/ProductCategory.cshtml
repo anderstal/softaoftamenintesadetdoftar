@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SWEprotein.Models.tbProductCategory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kategorier</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Lägg till ny kategori", "CreateProductCategory")
+    </p>
+     <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+              Namn
+            </th>
+           
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sName)
+            </td>
+         
+            <td>
+                @Html.ActionLink("Redigera", "EditProductCategory", new { id=item.iID }) |
+               
+                @Html.ActionLink("Ta bort", "DeleteProductCategory", new { id=item.iID })
+            </td>
+        </tr>
+    }
+    
+    </table> <div>     @Html.ActionLink("Adminsidan", "Index")</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SWEprotein.Models.tbProduct>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Products</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Lägg till ny produkt", "CreateProduct") |    @Html.ActionLink("Adminsidan", "Index") 
+    </p>
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>Bild</th>
+            <th>Produkt</th>
+            <th>Lagersaldo</th>
+            <th>Antal sålda</th>
+            <th>Kampanj</th>
+            <th>Pris</th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td> <img src="@item.sPicture" class="img-responsive" alt="..." style="height:60px;"></td>
+            <td>@Html.DisplayFor(modelItem => item.sName) @Html.DisplayFor(modelItem => item.tbTaste.sTaste)</td>
+            <td>@Html.DisplayFor(modelItem => item.iStockBalance)</td>
+        
+            <td>@Html.DisplayFor(modelItem => item.iItemsSold)</td>
+                <td>@Html.DisplayFor(modelItem => item.iCampaign)</td>
+                <td>@Html.DisplayFor(modelItem => item.iPrice)</td>
+            <td>
+                @Html.ActionLink("Redigera/Mer info", "EditProduct", new { id=item.iID }) |
+          
+                @Html.ActionLink("Ta bort", "DeleteProduct", new { id=item.iID })
+            </td>
+        </tr>
+    }
+    
+    </table> <div>     @Html.ActionLink("Adminsidan", "Index")</div>
+</body>
+</html>

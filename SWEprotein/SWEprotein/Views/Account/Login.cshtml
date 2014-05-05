@@ -1,0 +1,32 @@
+﻿@model SWEprotein.Models.LoginModel
+
+@{
+    ViewBag.Title = "Logga in";
+    Layout = null;
+    }
+
+
+
+<section id="loginForm">
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+       <legend>Logga in</legend>
+        <div>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+          </div>  <div>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+                  </div>  
+        <input type="submit" value="Logga in" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Registrera ", "Register") om du inte har något konto.
+    </p>
+}
+</section>

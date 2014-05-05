@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SWEprotein.Models.tbUserInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>   <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+   
+   <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                AnvändarID
+            </th>
+             <th>
+            Namn
+            </th>
+            <th>
+            Adress
+            </th>
+            <th>
+             Postnummer
+            </th>
+            <th>
+            Stad
+            </th>
+            <th>
+               Email
+            </th>
+            <th>
+             Telefonnummer
+            </th>
+            <th>
+            Köpt för
+            </th>
+            
+            <th></th>
+        </tr>
+    
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iUserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sFirstName)    @Html.DisplayFor(modelItem => item.sLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sAdress)
+                </td>
+                  
+                <td>
+                    @Html.DisplayFor(modelItem => item.sPostalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iTotalPurchase)
+                </td>
+                <td>
+                    @Html.ActionLink("Redigera", "EditUserInfo", new { id=item.iUserID }) |
+               
+                    @Html.ActionLink("Ta bort", "DeleteUserInfo", new { id=item.iUserID })
+                </td>
+            </tr>
+        }
+    
+    </table>
+    <div>     @Html.ActionLink("Adminsidan", "Index")</div>
+</body>
+</html>

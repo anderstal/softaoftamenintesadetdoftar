@@ -1,0 +1,68 @@
+﻿
+@using SWEprotein.Models
+
+
+<div class="row">
+   
+    <div class="col-md-12" style="margin-top:15px; margin-bottom: 15px;">
+          <div id="carousel-example-generic" class="carousel" data-ride="carousel">
+                                                              <!-- Indicators -->
+                                                              <ol class="carousel-indicators">
+                                                                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                              </ol>
+
+                                                              <!-- Wrapper for slides -->
+                                                              <div class="carousel-inner">
+                                                                  <div class="item active">
+                                                                      <a href="/Info/Erbjudanden"><img src="/Images/Sitegraf/karusel1.png" alt="" class="img-thumbnail"></a>
+                                                                      <div class="carousel-caption">
+
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="item">
+                                                                      <a href="/Info/Erbjudanden"><img src="/Images/Sitegraf/karusel2.jpg" alt="" class="img-thumbnail"></a>
+                                                                      <div class="carousel-caption">
+  
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="item">
+                                                                      <a href="/Info/Erbjudanden">  <img src="/Images/Sitegraf/karusel3.jpg" alt="" class="img-thumbnail"></a>
+                                                                      <div class="carousel-caption">
+   
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+
+                                                              <!-- Controls -->
+                                                              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                                              </a>
+                                                              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                                              </a>
+                                                          </div>
+    </div>
+   
+    
+</div>
+<div class="row" style="margin-bottom:50px;">
+
+
+    @foreach (tbProduct prod in Model)
+    {
+        <div class="col-md-3" style="padding-left:5px; padding-right:5px;">
+            <div class="thumbnail" style="height:250px;">
+               <a href="/Product/Produkt/@prod.iID"> <img src="@prod.sPicture" class="img-responsive" alt="..." style="height:80px;"></a>
+                <div class="caption">
+                  <a href="/Product/Produkt/@prod.iID">   <p style="font-weight:bold; color:black; margin-top:10px;">@prod.sName</p></a>
+                    <p style="font-size:x-small">@prod.sDescription</p>
+                    <hr style="color:darkgrey; margin-top:45px; margin-bottom:5px;"/>
+                   <p style="font-weight:bold; color:red;">Pris: @prod.iPrice:- @Html.ActionLink("Köp", "Produkt", "Product", new {id = prod.iID}, new {@class="btn btn-sm btn-danger"}) </p>
+                </div>
+            </div>
+        </div>
+  
+    }
+</div>
