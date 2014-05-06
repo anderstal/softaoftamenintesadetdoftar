@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>SWEprotein</title>
-
+  <link href="~/Content/themes/base/jquery-ui.css" type="text/css" rel="stylesheet" />
     @Styles.Render("~/Content/bootstrapcss")
-
+ 
     <style type="text/css">
         .stylebody {
             background: white;
@@ -17,6 +17,19 @@
             background-color: white;
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         }
+
+        .right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
     </style>
 </head>
 <body style="background-color: silver">
@@ -31,15 +44,23 @@
 
             <div class="col-md-3 col-md-offset-3 text-center">
 
-           
-
-
-                @using (Html.BeginForm("Index", "Product", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Product", FormMethod.Post, new { @class="form-inline"}))
                 {
-                    <div style="margin-top: 13px;">
-                    <input type="text" name="searchString" data-autocomplete="@Url.Action("QuickSearch", "Product")" />
-                    <input type="submit" value="Sök"/>
+                    <div style="padding-top:30px;">
+                    <div class="form-group right-inner-addon">
+                       
+                            <i class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control" name="searchString" placeholder="Sök..."  data-autocomplete="@Url.Action("QuickSearch", "Product")"/>
+                      
                     </div>
+                  
+                             <input type="submit" class="btn btn-default" style="margin-left:10px;" value="Sök"/>
+                          
+                  </div>
+                    
+                    
+                    
+                    
                 }
               
             </div>
@@ -152,9 +173,9 @@
 
     @Content.Script("jquery-1.9.1.min.js", Url)
     @Content.Script("jquery.unobtrusive-ajax.min.js", Url)
-    
-    @Content.Script("jquery-ui.min.js", Url)
-    @Content.Script("autosearch.js", Url)
+    <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+   
+    @Content.Script("autocomplete.js", Url)
     @RenderSection("scripts", false)
 </body>
 </html>

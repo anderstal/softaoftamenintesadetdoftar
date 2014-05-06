@@ -14,12 +14,12 @@ namespace SWEprotein.Controllers
 
         public ActionResult QuickSearch(string term)
         {
-            var qry = _db.tbProducts.Where(c => c.sName.ToLower().Contains(term.ToLower()))
-                .Take(10)
+            var qry = _db.tbProducts.Where(c => c.sName.Contains(term))
+                .Take(10).DistinctBy(c => c.sName)
                 .Select(r => new { label = r.sName });
             return Json(qry, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Index()
+        public ActionResult Index() 
         {
 
             var allProducts = _db.tbProducts.DistinctBy(c => c.sName).Where(c => c.iActive != 2).ToList();
@@ -33,10 +33,10 @@ namespace SWEprotein.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var searchProducts = _db.tbProducts.Where(c => c.sName.ToLower().Contains(searchString.ToLower())).ToList();
+                var searchProducts = _db.tbProducts.DistinctBy(c => c.sName).Where(c => c.sName.ToLower().Contains(searchString.ToLower())).ToList();
                 return View(searchProducts);
             }
-            var allProducts = _db.tbProducts.Where(c => c.iActive != 2).ToList();
+            var allProducts = _db.tbProducts.DistinctBy(c => c.sName).Where(c => c.iActive != 2).ToList();
 
             return View(allProducts);
         }
@@ -79,13 +79,13 @@ namespace SWEprotein.Controllers
 
         public ActionResult Campaign(int id)
         {
-            var campaignProducts = _db.tbProducts.Where(c => c.iCampaign == id);
+            var campaignProducts = _db.tbProducts.DistinctBy(c => c.sName).Where(c => c.iCampaign == id);
             return View(campaignProducts);
         }
 
         public ActionResult Sortiment(int id)
         {
-            var sortedProducts = _db.tbProducts.Where(c => c.iProductType == id);
+            var sortedProducts = _db.tbProducts.DistinctBy(c => c.sName).Where(c => c.iProductType == id);
             ViewBag.topProduct = sortedProducts.OrderByDescending(c => c.iItemsSold).Take(1);
 
 
