@@ -3,30 +3,49 @@
 @{
     ViewBag.Title = "Logga in";
     Layout = null;
+}
+
+<style type="text/css">
+    #loginFormWrapper {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 20px;
     }
 
+    .textBoxWrapper {
+        margin: 0 0 10px 0;
+    }
+    
+    .textBoxWrapper input {
+        width: 115px;
+    } 
+</style>
 
 
-<section id="loginForm">
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <fieldset>
-       <legend>Logga in</legend>
-        <div>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-          </div>  <div>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-                  </div>  
-        <input type="submit" value="Logga in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Registrera ", "Register") om du inte har något konto.
-    </p>
-}
-</section>
+<div class="img-rounded" id="loginFormWrapper">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Inloggning</legend>
+                <div class="textBoxWrapper">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>  
+                <div class="textBoxWrapper">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>  
+                <input type="submit" value="Logga in" />
+            </fieldset>
+            <p>
+                @Html.ActionLink("Registrera ", "Register") om du inte har något konto.
+            </p>
+        }
+    </section>
+</div>
