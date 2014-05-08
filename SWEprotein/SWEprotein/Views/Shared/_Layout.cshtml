@@ -30,9 +30,16 @@
     padding: 10px 12px;
     pointer-events: none;
 }
+
+       
+            div#searchBox  input { background: darkgrey; color: black; }
+            
+ div#searchBox input:hover { background: silver; color: black;}
+ div#searchBox input:focus { background: white; color: black;}
+       
     </style>
 </head>
-<body style="background-color: silver">
+<body style="background-color: black">
 
     <div class="container" style="background-color: black;">
 
@@ -47,14 +54,14 @@
                 @using (Html.BeginForm("Index", "Product", FormMethod.Post, new { @class="form-inline"}))
                 {
                     <div style="padding-top:30px;">
-                    <div class="form-group right-inner-addon">
+                    <div class="form-group right-inner-addon" id="searchBox">
                        
                             <i class="glyphicon glyphicon-search"></i>
                             <input type="text" class="form-control" name="searchString" placeholder="Sök..."  data-autocomplete="@Url.Action("QuickSearch", "Product")"/>
                       
                     </div>
                   
-                             <input type="submit" class="btn btn-default" style="margin-left:10px;" value="Sök"/>
+                             <input type="submit" class="btn btn-default" style="margin-left:10px; background:darkgrey;" value="Sök"/>
                           
                   </div>
                     

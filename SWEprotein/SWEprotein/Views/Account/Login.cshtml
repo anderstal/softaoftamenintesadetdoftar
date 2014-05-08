@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<style type="text/css">
+@*<style type="text/css">
     #loginFormWrapper {
         background-color: white;
         padding: 25px;
@@ -19,7 +19,7 @@
     .textBoxWrapper input {
         width: 115px;
     } 
-</style>
+</style>*@
 
 
 
@@ -30,22 +30,23 @@
             @Html.ValidationSummary(true)
 
             <fieldset>
-                <legend>Inloggning</legend>
+                <legend>Logga in</legend>
                 <div class="textBoxWrapper">
                     @Html.LabelFor(m => m.UserName)
-                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, null, new { @class="form-control"})
                     @Html.ValidationMessageFor(m => m.UserName)
                 </div>  
                 <div class="textBoxWrapper">
                     @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class="form-control"})
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>  
-                <input type="submit" value="Logga in" />
+          <input type="submit" value="Logga in" class="btn btn-success btn-xs" />
+               
             </fieldset>
-            <p>
-                @Html.ActionLink("Registrera ", "Register") om du inte har något konto.
-            </p>
+         
+                 @Html.ActionLink("Ny kund", "Register", null,  new { @class="btn btn-success btn-xs"})
+         
         }
     </section>
 </div>
